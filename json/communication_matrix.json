@@ -1,0 +1,233 @@
+[
+  {
+    "id": "7b91fce5-daa9-474c-a15a-038f4c3a5e04",
+    "seq_no": 1,
+    "info_type": "วิสัยทัศน์ พันธกิจ เป้าหมาย นโยบายบริหารงานบริการ นโยบายความมั่นคงปลอดภัยด้านสารสนเทศ นโยบายความปลอดภัย อาชีวอนามัยและสภาพแวดล้อมในการทำงาน นโยบายด้านความต่อเนื่องทางธุรกิจ",
+    "communicator": "ผู้บริหารระดับสูง, QA, จป. วิชาชีพ",
+    "recipient": "พนักงานใหม่",
+    "frequency": "ตามรอบจัดปฐมนิเทศ",
+    "method": "ประชุมปฐมนิเทศ",
+    "direction": "internal",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "9e7b3abf-9db5-4704-88dd-e180ad3abf4a",
+    "seq_no": 1,
+    "info_type": "วิสัยทัศน์ พันธกิจ เป้าหมาย นโยบายบริหารงานบริการ",
+    "communicator": "ผู้บริหารระดับสูง",
+    "recipient": "หัวหน้าและผู้ช่วยหัวหน้า",
+    "frequency": "อย่างน้อยปีละครั้ง",
+    "method": "ประชุม",
+    "direction": "internal",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "6ae8135d-6edb-4d7d-a06c-87423fb8156c",
+    "seq_no": 2,
+    "info_type": "ประวัติบริษัทและหลักการพื้นฐานของระบบมาตรฐาน",
+    "communicator": "QA & SHE",
+    "recipient": "พนักงานใหม่",
+    "frequency": "ตามรอบจัดปฐมนิเทศ",
+    "method": "ปฐมนิเทศ",
+    "direction": "internal",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "9fcd0876-986e-49ee-bf7a-752039dfd062",
+    "seq_no": 3,
+    "info_type": "สถานะของ KPI และการปรับปรุงคุณภาพด้านบริการ ด้าน Information security ด้านความปลอดภัย อาชีวอนามัย และด้านความต่อเนื่องทางธุรกิจ",
+    "communicator": "ผู้บริหาร, หัวหน้างาน, จป. วิชาชีพ",
+    "recipient": "ทุกท่านที่เกี่ยวข้อง",
+    "frequency": "ทุก 2 เดือน",
+    "method": "ประชุม KPI และ O&M",
+    "direction": "internal",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "87bff46c-1300-4c14-b281-6f47ce271cc9",
+    "seq_no": 4,
+    "info_type": "Quality Report (PD-27 Service level Management and Service Reporting)",
+    "communicator": "Customer Relation",
+    "recipient": "ทุกท่านที่เกี่ยวข้อง",
+    "frequency": "เมื่อมีการร้องขอ หรืออย่างน้อยปีละครั้ง",
+    "method": "อีเมล์ หรือ ประชุม",
+    "direction": "internal",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "347de54a-af4e-4c94-9148-28c027143dbd",
+    "seq_no": 5,
+    "info_type": "บริการแบบใหม่หรือการเปลี่ยนแปลงที่มีผลกระทบมาก (PD-15 Change Management)",
+    "communicator": "ผู้บริหาร, Network Planning, Business Development",
+    "recipient": "ทุกท่านที่เกี่ยวข้อง",
+    "frequency": "เมื่อมีบริการแบบใหม่หรือเปลี่ยนแปลงที่มีผลกระทบมาก",
+    "method": "Road Show หรือการประชุม หรือ OJT",
+    "direction": "internal",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "03167f61-2a81-4568-b1b5-60c2604987fa",
+    "seq_no": 6,
+    "info_type": "Customer Satisfaction และ Complaint",
+    "communicator": "ผู้บริหาร, QA & SHE, Customer Relation",
+    "recipient": "ทุกท่านที่เกี่ยวข้อง",
+    "frequency": "ตามรอบสำรวจ หรือเมื่อได้รับแจ้ง Complaint",
+    "method": "อีเมล์ หรือ ประชุม",
+    "direction": "internal",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "f4e8b3ab-676c-480a-a00c-b1ed267f40f8",
+    "seq_no": 7,
+    "info_type": "Fault Summary Report (PD-25 การจัดการเหตุผิดปกติ และการร้องขอบริการจากลูกค้า)",
+    "communicator": "Customer Relation",
+    "recipient": "ทุกท่านที่เกี่ยวข้อง",
+    "frequency": "เมื่อมี Outage",
+    "method": "อีเมล์ หรือ ประชุม",
+    "direction": "internal",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "ee9422c2-c668-4e67-9630-613cd4719f88",
+    "seq_no": 8,
+    "info_type": "กฎหมายที่เกี่ยวข้องกับบริษัท",
+    "communicator": "Legal, จป. วิชาชีพ",
+    "recipient": "ทุกท่านที่เกี่ยวข้อง",
+    "frequency": "เมื่อมีกฎหมายใหม่",
+    "method": "อีเมล์ หรือ ประชุม หรือ Memo",
+    "direction": "internal",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "940fbdc9-5b8a-4b8b-88b9-6e81a3e44ec3",
+    "seq_no": 9,
+    "info_type": "รายงานการสอบสวนอุบัติเหตุและอุบัติการณ์",
+    "communicator": "จป. วิชาชีพ",
+    "recipient": "พนักงาน",
+    "frequency": "เมื่อเกิดเหตุ",
+    "method": "อีเมล์ หรือ ประชุม หรือ อบรม",
+    "direction": "internal",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "ec3834b0-be3e-43f7-92f4-082da29636bd",
+    "seq_no": 10,
+    "info_type": "คู่มือความปลอดภัย อาชีวอนามัย และสภาพแวดล้อมในการทำงาน",
+    "communicator": "จป. วิชาชีพ",
+    "recipient": "พนักงาน",
+    "frequency": "เมื่อเข้าปฏิบัติงานที่บริษัท",
+    "method": "อบรม",
+    "direction": "internal",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "1993a9b1-08a2-4fcb-9dd8-bf6b4b020b02",
+    "seq_no": 11,
+    "info_type": "กฎระเบียบความปลอดภัยของข้อมูลสารสนเทศ (P-02)",
+    "communicator": "QA & SHE",
+    "recipient": "พนักงาน",
+    "frequency": "เมื่อมีพนักงานใหม่ หรือทบทวนความรู้",
+    "method": "ปฐมนิเทศ, Sharepoint",
+    "direction": "internal",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "211bd0f5-13de-43a7-8336-2f7f1c4e3a5a",
+    "seq_no": 12,
+    "info_type": "การให้ความรู้เกี่ยวกับ cyber security",
+    "communicator": "ผู้ประสานงาน HR group, QA & SHE",
+    "recipient": "พนักงาน",
+    "frequency": "เมื่อมีพนักงานใหม่ หรือทบทวนความรู้",
+    "method": "Training / E-learning",
+    "direction": "internal",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "b1204d0b-e288-4a3b-b637-4b49b1969086",
+    "seq_no": 13,
+    "info_type": "นโยบายบริษัท และจรรยาบรรณทางธุรกิจ",
+    "communicator": "QA & SHE",
+    "recipient": "พนักงานทุกคน",
+    "frequency": "เมื่อมีพนักงานใหม่ หรือทบทวนความรู้ปีละ 1 ครั้ง",
+    "method": "ปฐมนิเทศ, Sharepoint",
+    "direction": "internal",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "428dc801-8843-45a8-b07d-a20685b7c3b5",
+    "seq_no": 1,
+    "info_type": "การจัดทำสัญญา / ข้อตกลง (PD-53) กับ Supplier/Provider",
+    "communicator": "ผู้ที่เกี่ยวข้องกับจัดซื้อ/จัดจ้าง หรือ Contract Management",
+    "recipient": "ผู้ขาย, ผู้ให้บริการ",
+    "frequency": "เมื่อมีการตกลงจัดซื้อ/จัดจ้าง",
+    "method": "เอกสารสัญญา / ข้อตกลง",
+    "direction": "external",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "07599cfa-869d-48da-94ed-11b6ead01da7",
+    "seq_no": 2,
+    "info_type": "การจัดทำสัญญา / ข้อตกลง (PD-37) กับลูกค้า",
+    "communicator": "Marketing & Sales หรือ Contract Management",
+    "recipient": "ลูกค้า",
+    "frequency": "เมื่อมีการตกลงซื้อขาย",
+    "method": "เอกสารสัญญา / ข้อตกลง",
+    "direction": "external",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "51ae4bfc-a67a-45ee-be42-f34804aa4d56",
+    "seq_no": 3,
+    "info_type": "Quality Report (PD-27)",
+    "communicator": "Customer Relation",
+    "recipient": "ลูกค้า",
+    "frequency": "เมื่อมีการร้องขอ หรืออย่างน้อยปีละครั้ง",
+    "method": "อีเมล์ หรือ ประชุม",
+    "direction": "external",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "372c0f33-b303-4a53-bc5a-8cad60b95c9a",
+    "seq_no": 5,
+    "info_type": "Fault Summary Report (PD-25)",
+    "communicator": "Customer Relation",
+    "recipient": "ลูกค้า",
+    "frequency": "เมื่อมี Outage",
+    "method": "อีเมล์ หรือ ประชุม",
+    "direction": "external",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "71f7801e-9416-4b6e-8287-7c3b90d437b7",
+    "seq_no": 6,
+    "info_type": "คู่มือความปลอดภัย อาชีวอนามัย และสภาพแวดล้อมในการทำงาน (สำหรับผู้รับเหมา)",
+    "communicator": "จป. วิชาชีพ",
+    "recipient": "ผู้รับเหมา / ผู้ขาย",
+    "frequency": "เมื่อมีการทำงาน Operation (CR)",
+    "method": "Mail / Link online",
+    "direction": "external",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "0f57b675-1852-4f0f-b9ab-2991bac75e6a",
+    "seq_no": 7,
+    "info_type": "การเกิด cyber attacked",
+    "communicator": "ผู้บริหาร",
+    "recipient": "หน่วยงานกำกับดูแล",
+    "frequency": "เมื่อเกิดเหตุ",
+    "method": "โทรศัพท์, E-service, เอกสาร",
+    "direction": "external",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "7965948d-e742-44d6-8f5a-4ba938b7c58c",
+    "seq_no": 8,
+    "info_type": "Daily Report, Monthly Report สำหรับบริการ CSOC",
+    "communicator": "CSOC",
+    "recipient": "ลูกค้า",
+    "frequency": "เมื่อพบเหตุการณ์ Incident ประจำวัน และสรุปประจำเดือน",
+    "method": "อีเมล์ หรือ ประชุม",
+    "direction": "external",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  }
+]

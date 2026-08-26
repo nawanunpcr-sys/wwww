@@ -1,113 +1,107 @@
-# LexGuard — ชุดข้อมูลส่งออก
+# Compliance Register — ทะเบียนกฎหมาย SHE และการติดตามความสอดคล้อง
+> ชื่อโค้ดภายใน (repo/codename): LexGuard · ชื่อทางการ/ผู้ใช้เห็น: **Compliance Register**
 
-ข้อมูลทั้งหมดจากฐานข้อมูลทะเบียนกฎหมาย SHE ส่งออกเมื่อ **20 สิงหาคม 2569**
-รวม **1,002 แถว จาก 33 ตาราง**
+ระบบเว็บแอปสำหรับ จป.วิชาชีพ ของ **บริษัท จัสเทล เน็ทเวิร์ค จำกัด** ใช้จัดการทะเบียนกฎหมาย
+ความปลอดภัย อาชีวอนามัย และสภาพแวดล้อมในการทำงาน (SHE) รวมถึงกฎหมายอื่นที่เกี่ยวข้อง
+พร้อมประเมินความสอดคล้องรายข้อ ติดตามงานที่ต้องทำ สรุปกฎหมายด้วย AI และตารางการสื่อสารองค์กร (ISD-86)
 
-ต้นทาง: Supabase project `exugnmdsyqbqtxsrwhbm` (legal-registry 2)
+สร้างด้วย **React + Vite + Supabase (PostgreSQL) + Vercel + Claude API**
 
 ---
 
-## โครงสร้างโฟลเดอร์
+## เมนูหลัก (4 อัน + เมนูย่อย)
+1. **Dashboard** — KPI ภาพรวม (จำนวนกฎหมาย/ข้อปฏิบัติ/ยังไม่สอดคล้อง/% ความสอดคล้อง),
+   ความสอดคล้องรายหมวด, รายการยังไม่สอดคล้อง (NC), สถิติรายเดือน (พับเก็บได้)
+2. **ทะเบียนกฎหมาย** — 3 แท็บในหน้าเดียว:
+   - *ทะเบียนกฎหมาย* — ค้นหา/กรอง, ดูรายละเอียด, ประเมิน C/NC รายข้อ (บันทึกลงฐานทันที),
+     เพิ่มกฎหมาย, ตรวจรายเดือน, ลิงก์ตัวบทต้นฉบับ (📄), ส่งออก Excel / PDF (F-259)
+   - *กฎหมายที่ยกเลิก* — ดู/กู้คืน/แทนที่
+   - *ประวัติการทำรายการ* — audit trail แยกตามหมวด
+3. **รายการที่ต้องทำ** — รวมงานค้างจาก 3 แหล่ง (ทวนสอบกฎหมาย · รายงานราชการ · การสื่อสาร)
+   อ่านจาก view `lg_tasks` แท็บ ต้องทำ / กำลังดำเนินการ / เสร็จแล้ว จัดกลุ่มตามกำหนดเวลา
+4. **สื่อสาร & ส่งรายงาน** — ตารางการสื่อสาร (ISD-86) + ส่งรายงานราชการ (เพิ่ม/แก้/บันทึกการส่ง)
+5. **สรุปกฎหมาย (AI)** — วางข้อความ/ลิงก์/PDF ให้ AI สรุปเป็นข้อปฏิบัติ พร้อมส่งต่อเข้าทะเบียน
 
+เมนูรอง: **การแจ้งเตือน** (กระดิ่งบน header) · **ตั้งค่า** (ปุ่มเฟืองมุมล่างซ้าย / เมนูผู้ใช้ — เฉพาะ admin)
+
+## โมเดลการประเมินความสอดคล้อง (P18)
+- สถานะข้อปฏิบัติในฐานมีแค่ `met` / `unmet` — "ยังไม่ประเมิน" ระบุด้วย `evaluated_at IS NULL`
+- ประเมินรายข้อ **inline ในหน้าเพิ่มกฎหมาย**: สอดคล้อง / ไม่สอดคล้อง / รอผู้เกี่ยวข้องประเมิน
+  ("รอผู้เกี่ยวข้องประเมิน" = `unmet` + `evaluated_at` NULL + note `รอผู้เกี่ยวข้องประเมิน:`)
+- **% ความสอดคล้อง = met / (met + unmet ที่ประเมินแล้ว)** — ข้อที่ "รอประเมิน" ไม่รวมทั้งเศษและส่วน
+
+## ข้อมูล (ยึดฐานข้อมูลสดเป็นหลัก)
+- **7 หมวด**: LA–LG (CCS/CC ถูกถอดออกแล้ว)
+- ~**160 ฉบับ** (บังคับใช้ ~150 + ยกเลิก ~10) · ~**522 ข้อปฏิบัติ** (ยังไม่สอดคล้องจริง ~13 ข้อ)
+- รายงานราชการ ~19 รายการ · การสื่อสาร ~26 รายการ · แผนก (lg_departments) 16 แผนก
+- ตารางทั้งหมดใช้ prefix `lg_`
+
+> ⚠️ ตัวเลขด้านบนเป็นค่าประมาณ ณ เวลาเขียน — ให้ยึดหน้า Dashboard ในแอป หรือ `SELECT count(*) …`
+> จากฐานข้อมูลสดเสมอ
+
+## โครงสร้างโปรเจกต์
 ```
-lexguard-export/
-├── README.md                 ← ไฟล์นี้
-├── data/
-│   ├── csv/                  33 ไฟล์ · เปิดด้วย Excel / Google Sheets ได้เลย
-│   ├── json/                 33 ไฟล์ · ข้อมูลครบทุก field ไม่มีการแปลงค่า
-│   ├── sql/                  33 ไฟล์ · คำสั่ง INSERT สำหรับกู้คืนลงฐานข้อมูล
-│   ├── restore-all.sql       สคริปต์กู้คืนทุกตารางตามลำดับที่ถูกต้อง
-│   └── manifest.json         สรุปจำนวนแถว/คอลัมน์ของแต่ละตาราง
-├── schema/
-│   ├── schema.sql            โครงสร้างฐานข้อมูลฉบับเต็ม (ตาราง view index policy comment)
-│   └── migrations/           ประวัติการแก้โครงสร้าง 41 ไฟล์ (001–041)
-├── supabase-functions/       Edge Functions ฝั่ง Supabase (ai-law-search, ai-law-summary)
-└── app-config/               ← ส่วน Vercel
-    ├── VERCEL.md             อธิบายการตั้งค่า env var และวิธี deploy
-    ├── vercel.json           build config + เพดานเวลา 300 วิของแต่ละ function
-    ├── package.json          dependencies และคำสั่ง build
-    ├── .env.example          รายชื่อ environment variable
-    └── api/                  serverless functions 9 ไฟล์ (law-analyze, law-relate, _lib)
+lexguard/
+├─ src/
+│  ├─ App.jsx                 # แอปหลัก · sidebar 4 เมนู · header (ค้นหา/กระดิ่ง/ส่งออก) · routing
+│  ├─ index.css               # ดีไซน์ระบบทั้งหมด (รวม @media print สำหรับ F-259)
+│  ├─ pages/
+│  │  ├─ Dashboard.jsx        # KPI strip + CatBars + NC list + สถิติรายเดือน
+│  │  ├─ Registry.jsx         # ทะเบียน + แท็บ (Register/Repealed/History) + ประเมิน C/NC
+│  │  ├─ Tasks.jsx            # "รายการที่ต้องทำ" อ่านจาก view lg_tasks (แทน Calendar+Tracker เดิม)
+│  │  ├─ LawSummary.jsx       # สรุปกฎหมายด้วย AI + คลังสรุป
+│  │  ├─ Communications.jsx   # ตารางการสื่อสาร (ISD-86)
+│  │  ├─ History.jsx / Repealed.jsx / Notifications.jsx / Settings.jsx / Improvements.jsx
+│  ├─ components/
+│  │  ├─ AddLawFlow.jsx       # เพิ่มกฎหมาย + ประเมินรายข้อ inline + date picker + datalist แผนก
+│  │  ├─ CaseParts.jsx        # WFStepper / CaseDrawer / MonitorModal (ใช้ใน Tasks)
+│  │  ├─ LawDrawer.jsx        # แผงรายละเอียดกฎหมาย + แก้สถานะข้อปฏิบัติ
+│  │  ├─ Reports.jsx          # ส่งรายงานราชการ (เพิ่ม/แก้/บันทึกการส่ง)
+│  │  ├─ AssessForm.jsx / Attachments.jsx / NotifyPopup.jsx / DeleteLawModal.jsx …
+│  │  ├─ PdfExport.jsx        # สร้างรายงาน PDF ตามฟอร์ม F-259
+│  │  └─ ExportPdfModal.jsx / ImportLawsModal.jsx (createLawsBatch — UI ปิดไว้)
+│  └─ lib/
+│     ├─ supabase.js          # client + data access ทั้งหมด
+│     ├─ ui.jsx               # helper (วันที่ไทย/BE, prog, reqStats, Pill, ฯลฯ)
+│     ├─ auth.js              # ชั้น auth (demo / supabase)
+│     └─ integrations.js      # ส่งออก Excel
+├─ api/law-analyze.js         # Vercel serverless: AI สรุปกฎหมาย (Claude, server-side)
+├─ supabase/schema.sql        # โครงสร้างฐานข้อมูล + migrations/ (ถึง 031)
+├─ vercel.json                # build config + SPA rewrites (ไม่มี cron แล้ว)
+├─ .env.example               # ตัวอย่างค่าเชื่อมต่อ (ห้าม commit .env จริง)
+└─ package.json
 ```
 
-> ฝั่งเซิร์ฟเวอร์แยกเป็นสองที่: **Vercel** รัน `app-config/api/` (งาน AI หนักๆ ที่ต้องใช้เวลา
-> ถึง 300 วินาที) ส่วน **Supabase Edge Functions** อยู่ใน `supabase-functions/`
-> รายละเอียดการตั้งค่าฝั่ง Vercel อ่านที่ `app-config/VERCEL.md`
+## ตารางฐานข้อมูลหลัก (prefix `lg_`)
+- `lg_laws` · `lg_requirements` · `lg_categories` — ทะเบียนกฎหมาย + ข้อปฏิบัติ + หมวด
+- `lg_law_workflow` — งานทวนสอบ/ประเมินรายกฎหมาย (2 workflow: add / monitor)
+- `lg_reports` · `lg_communications` — รายงานราชการ + ตารางการสื่อสาร
+- `lg_tasks` (**view**, migration 030) — รวมงานที่ต้องทำจาก workflow/report/comm, `security_invoker`
+- `lg_departments` — รายชื่อแผนก (ช่วยเติมช่องผู้รับผิดชอบ)
+- `lg_review_log` · `lg_activity_log` · `lg_notification_log` · `lg_ai_discovered_laws` · `lg_settings`
+- migration 031: default `lg_requirements.status = 'met'` (คงสถานะเป็น met/unmet เท่านั้น)
 
----
-
-## ตารางที่มีข้อมูล
-
-### ระบบทะเบียนกฎหมายปัจจุบัน (`lg_*`)
-
-| ตาราง | แถว | เนื้อหา |
-|---|---:|---|
-| `lg_laws` | 161 | ทะเบียนกฎหมาย — ชื่อ หน่วยงาน วันประกาศ/บังคับใช้ สถานะ เลขราชกิจจาฯ |
-| `lg_requirements` | 576 | ข้อปฏิบัติรายข้อของแต่ละกฎหมาย + ผลประเมินความสอดคล้อง |
-| `lg_communications` | 26 | เมทริกซ์การสื่อสารภายใน/ภายนอก + รอบกำหนดส่ง |
-| `lg_ref_answers` | 22 | คำตอบที่ AI สรุปจากกฎหมายที่ถูกอ้างถึง (cache ตาม topic_key) |
-| `lg_activity_log` | 21 | บันทึกการเพิ่ม/ยกเลิก/แก้ไขกฎหมาย |
-| `lg_reports` | 19 | รายงานที่ต้องยื่นราชการ + กำหนดส่งครั้งถัดไป |
-| `lg_departments` | 16 | หน่วยงานผู้รับผิดชอบ |
-| `lg_law_refs` | 16 | ตัวบทของกฎหมายที่ถูกอ้างถึง พร้อมลิงก์แหล่งที่มา |
-| `lg_process_substatus` | 15 | ตารางอ้างอิงสถานะย่อยของแต่ละขั้นตอน |
-| `lg_compliance_months` | 14 | การติ๊กทวนสอบรายเดือน |
-| `lg_law_quarter_stats` | 14 | สถิติกฎหมายเพิ่ม/ยกเลิก รายไตรมาส |
-| `lg_categories` | 7 | หมวดกฎหมาย (LA–LG) |
-| `lg_notification_log` | 5 | ประวัติการแจ้งเตือน |
-| `lg_ai_discovered_laws` | 5 | คิวกฎหมายที่ AI ค้นเจอ/สรุปไว้ |
-| `lg_improvement_plans` | 2 | แผนปรับปรุงกรณีไม่สอดคล้อง |
-| `lg_search_log` | 2 | ประวัติการค้นหากฎหมายใหม่ |
-| `lg_import_staging` | 2 | (เลิกใช้แล้ว) staging เดิมก่อนเปลี่ยนมาใช้ `lg_ai_discovered_laws` |
-| `lg_settings` | 1 | ชื่อองค์กร/หัวเรื่องที่แสดงในระบบ |
-
-### ชุดข้อมูลเดิมก่อนย้ายมาโครงสร้าง `lg_*`
-
-| ตาราง | แถว | เนื้อหา |
-|---|---:|---|
-| `communication_matrix` | 21 | เมทริกซ์การสื่อสารฉบับเดิม |
-| `laws` | 19 | ทะเบียนกฎหมายฉบับเดิม |
-| `compliance_summary` | 18 | สรุปความสอดคล้องรายหมวดรายปี |
-| `regulatory_documents` | 14 | เอกสารที่ต้องยื่นราชการฉบับเดิม |
-| `law_categories` | 6 | หมวดกฎหมายฉบับเดิม |
-
-### ตารางที่มีโครงสร้างแต่ยังไม่มีข้อมูล
-
-`lg_law_workflow`, `lg_assessment_flow`, `lg_process_tracker`, `lg_process_items`,
-`lg_review_log`, `lg_attachments`, `lg_agent_queue`, `lg_agent_runs`,
-`lg_law_updates`, `compliance_logs` — ส่งออกเป็นไฟล์เปล่าไว้ให้ครบชุด
-
----
-
-## วิธีกู้คืนลงฐานข้อมูลใหม่
-
+## การติดตั้งและรันในเครื่อง
 ```bash
-# 1. สร้างโครงสร้าง
-psql "<connection string>" -f schema/schema.sql
-
-# 2. ใส่ข้อมูล (ต้องรันจากในโฟลเดอร์ lexguard-export)
-psql "<connection string>" -f data/restore-all.sql
+npm install
+npm run dev        # เปิด http://localhost:5173
+npm run build      # สร้าง production build ไป dist/
 ```
 
-ถ้าใช้ Supabase SQL Editor ที่เปิดทีละไฟล์ ให้วางเนื้อหา `schema/schema.sql` ก่อน
-แล้วค่อยวางไฟล์ใน `data/sql/` ทีละตารางตามลำดับที่ระบุใน `data/restore-all.sql`
-(ลำดับสำคัญ เพราะตารางลูกอ้างถึงตารางแม่)
+## Environment Variables (ตั้งใน Vercel)
+- `VITE_SUPABASE_URL` — URL ของโครงการ Supabase
+- `VITE_SUPABASE_ANON_KEY` — publishable key (ฝังใน client ได้)
+- `VITE_AUTH_MODE` — `demo` (ทดลอง) หรือ `supabase` (ใช้จริง)
+- `VITE_DEMO_PASSWORD` — รหัสผ่านบัญชี demo (ถ้าไม่ตั้ง จะล็อกอินโหมด demo ไม่ได้)
+- `ANTHROPIC_API_KEY` — คีย์ Claude สำหรับ "สรุปกฎหมาย (AI)" (server-side เท่านั้น)
+- `ALLOWED_ORIGIN` — โดเมนของแอปเอง ใช้ตรวจ Origin/Referer ของ `api/law-analyze`
 
-ไฟล์ SQL ใช้วิธีให้ Postgres แปลงค่าจาก JSON เอง จึงรองรับข้อความไทย เครื่องหมายคำพูด
-การขึ้นบรรทัดใหม่ ค่า jsonb และ array ได้ถูกต้องโดยไม่ต้องแก้อะไรเพิ่ม
+> หมายเหตุ: flow "เฝ้าระวังกฎหมายอัตโนมัติ" (Vercel Cron + `api/agent-*`, `api/law-update`)
+> ถูกถอดออกแล้ว — ไม่ต้องตั้ง `CRON_SECRET` อีก
 
----
-
-## หมายเหตุ
-
-- **ไฟล์ CSV มี BOM** เพื่อให้ Excel อ่านภาษาไทยไม่เป็นตัวต่างด้าว ถ้าเปิดด้วยโปรแกรมอื่น
-  แล้วเห็นอักขระแปลกที่ต้นไฟล์ ให้เลือก encoding เป็น UTF-8
-- **ค่า id เดิมถูกเก็บไว้ทุกแถว** ความสัมพันธ์ระหว่างตาราง (เช่น `lg_requirements.law_id`
-  → `lg_laws.id`) จึงยังตรงกันหลังกู้คืน
-- **ไม่มีตารางสำรอง 6 ตัว** (`lg_requirements_bak_20260717`, `lg_laws_datebackup_20260721`,
-  `lg_laws_ccsbak_20260731`, `lg_requirements_ccsbak_20260731`,
-  `lg_categories_ccsbak_20260731`, `lg_laws_datefix_bak_20260731`)
-  ตารางเหล่านี้เป็นสแนปช็อตเก่าที่แอปไม่ได้ใช้ และถูกตั้งค่าปิดการเข้าถึงจากภายนอกไว้
-  โครงสร้างของมันยังอยู่ใน `schema/schema.sql`
-- **ไม่มีรหัสผ่านหรือคีย์ใดๆ ในโฟลเดอร์นี้** `app-config/.env.example` เป็นไฟล์ตัวอย่าง
-  ที่มีแต่ชื่อตัวแปร ผู้รับต้องใส่ค่าเอง
+## ⚠️ หมายเหตุด้านความปลอดภัย (ทำก่อนขึ้นใช้จริง / ก่อนเปิด repo สาธารณะ)
+1. **ลบบัญชีที่ฝังรหัสในโค้ด** ใน `src/lib/auth.js` (`APP_ACCOUNTS`) — มี username/password hardcode
+   ถ้ารีโปเป็น public = ใครก็ล็อกอินเป็น admin ได้ · ให้ย้ายไป Supabase Auth และเปลี่ยนรหัสทันที
+2. **RLS**: สิทธิ์ในหน้าเว็บเป็นเพียง UI · ให้เพิ่ม policy จำกัดสิทธิ์ที่ฐานข้อมูลก่อนใช้งานวงกว้าง
+3. ปิด `VITE_SKIP_LOGIN` ใน production (ให้สิทธิ์ guest = admin)
+4. พิจารณาตั้งรีโปเป็น **private** (ถ้าเคย push รหัสไปแล้ว ให้ล้างประวัติ git ด้วย)

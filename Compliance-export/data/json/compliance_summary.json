@@ -1,0 +1,182 @@
+[
+  {
+    "id": "c695106d-8576-4bea-985d-a7934ef59f65",
+    "category_id": "LA",
+    "year": 2024,
+    "total_laws": 34,
+    "compliant_count": 34,
+    "non_compliant_count": 3,
+    "review_round": "ก.ค.-ก.ย.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "b5dfdea8-e774-4cf9-9264-8a056c22374a",
+    "category_id": "LB",
+    "year": 2024,
+    "total_laws": 19,
+    "compliant_count": 19,
+    "non_compliant_count": 0,
+    "review_round": "ก.ค.-ก.ย.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "48a265de-a77c-42d6-aecd-3cbe20a26f0a",
+    "category_id": "LC",
+    "year": 2024,
+    "total_laws": 11,
+    "compliant_count": 11,
+    "non_compliant_count": 0,
+    "review_round": "ก.ค.-ก.ย.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "9db40b4a-54e9-43b8-a816-ab6acc3ed2c4",
+    "category_id": "LD",
+    "year": 2024,
+    "total_laws": 13,
+    "compliant_count": 13,
+    "non_compliant_count": 0,
+    "review_round": "ก.ค.-ก.ย.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "33285658-18bb-46e9-8b7c-20e83b5fa872",
+    "category_id": "LE",
+    "year": 2024,
+    "total_laws": 10,
+    "compliant_count": 10,
+    "non_compliant_count": 0,
+    "review_round": "ก.ค.-ก.ย.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "1b948b4a-9323-43fe-8c12-4bc689c07319",
+    "category_id": "LF",
+    "year": 2024,
+    "total_laws": 44,
+    "compliant_count": 38,
+    "non_compliant_count": 6,
+    "review_round": "ก.ค.-ก.ย.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "b19d05e2-9690-4335-9c61-122aec255ce4",
+    "category_id": "LA",
+    "year": 2025,
+    "total_laws": 37,
+    "compliant_count": 80,
+    "non_compliant_count": 2,
+    "review_round": "ม.ค.-ธ.ค.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "fbd2e1dc-8430-42ce-8306-9fa6327cde11",
+    "category_id": "LB",
+    "year": 2025,
+    "total_laws": 16,
+    "compliant_count": 33,
+    "non_compliant_count": 0,
+    "review_round": "ม.ค.-ธ.ค.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "14d12a09-a1b2-49dc-a9f9-1eba59821c5d",
+    "category_id": "LC",
+    "year": 2025,
+    "total_laws": 11,
+    "compliant_count": 30,
+    "non_compliant_count": 0,
+    "review_round": "ม.ค.-ธ.ค.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "6f1bda30-8422-4901-86fd-91cd4fc6031e",
+    "category_id": "LD",
+    "year": 2025,
+    "total_laws": 13,
+    "compliant_count": 29,
+    "non_compliant_count": 0,
+    "review_round": "ม.ค.-ธ.ค.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "7ef44273-42f9-4fb1-8480-7cc2b0cc5edd",
+    "category_id": "LE",
+    "year": 2025,
+    "total_laws": 10,
+    "compliant_count": 44,
+    "non_compliant_count": 0,
+    "review_round": "ม.ค.-ธ.ค.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "40a0490e-55f4-48be-9e22-6cf7ae3e73d6",
+    "category_id": "LF",
+    "year": 2025,
+    "total_laws": 45,
+    "compliant_count": 59,
+    "non_compliant_count": 0,
+    "review_round": "ม.ค.-ธ.ค.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "11c44ab4-9576-46fc-9242-a2e6037dd696",
+    "category_id": "LA",
+    "year": 2026,
+    "total_laws": 38,
+    "compliant_count": 80,
+    "non_compliant_count": 2,
+    "review_round": "ม.ค.-มี.ค.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "3ad069b9-a704-447c-9054-02c9e6930f94",
+    "category_id": "LB",
+    "year": 2026,
+    "total_laws": 16,
+    "compliant_count": 33,
+    "non_compliant_count": 0,
+    "review_round": "ม.ค.-มี.ค.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "474f90aa-cc16-422a-9785-33fdaed35299",
+    "category_id": "LC",
+    "year": 2026,
+    "total_laws": 11,
+    "compliant_count": 30,
+    "non_compliant_count": 0,
+    "review_round": "ม.ค.-มี.ค.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "381e2f73-dceb-4a70-b94f-1957cde16835",
+    "category_id": "LD",
+    "year": 2026,
+    "total_laws": 13,
+    "compliant_count": 29,
+    "non_compliant_count": 0,
+    "review_round": "ม.ค.-มี.ค.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "0538f9fb-59b8-404b-860f-31f5406299c3",
+    "category_id": "LE",
+    "year": 2026,
+    "total_laws": 10,
+    "compliant_count": 44,
+    "non_compliant_count": 0,
+    "review_round": "ม.ค.-มี.ค.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "7f579f38-5e04-4fde-aa87-4c994eebb05d",
+    "category_id": "LF",
+    "year": 2026,
+    "total_laws": 45,
+    "compliant_count": 59,
+    "non_compliant_count": 0,
+    "review_round": "ม.ค.-มี.ค.",
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  }
+]

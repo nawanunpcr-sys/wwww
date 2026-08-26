@@ -1,0 +1,56 @@
+[
+  {
+    "id": "LA",
+    "name_th": "การบริหารและการจัดการด้านความปลอดภัย อาชีวอนามัย และสภาพแวดล้อมในการทำงาน, สวัสดิการ",
+    "name_en": "Safety, Occupational Health & Environment Management",
+    "total_laws": 38,
+    "compliant_count": 80,
+    "non_compliant_count": 2,
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "LB",
+    "name_th": "ไฟฟ้าและพลังงาน",
+    "name_en": "Electricity & Energy",
+    "total_laws": 16,
+    "compliant_count": 33,
+    "non_compliant_count": 0,
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "LC",
+    "name_th": "การป้องกันและระงับอัคคีภัย",
+    "name_en": "Fire Prevention & Suppression",
+    "total_laws": 11,
+    "compliant_count": 30,
+    "non_compliant_count": 0,
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "LD",
+    "name_th": "ความร้อน แสงสว่าง เสียง และสภาพแวดล้อมในการทำงาน",
+    "name_en": "Heat, Lighting, Noise & Work Environment",
+    "total_laws": 13,
+    "compliant_count": 29,
+    "non_compliant_count": 0,
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "LE",
+    "name_th": "ก่อสร้าง ลิฟต์ เครื่องจักร ปั้นจั่น และงานที่มีความเสี่ยงอื่นๆ",
+    "name_en": "Construction, Elevator, Machinery & High-risk Work",
+    "total_laws": 10,
+    "compliant_count": 44,
+    "non_compliant_count": 0,
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  },
+  {
+    "id": "LF",
+    "name_th": "กฎหมายเกี่ยวกับ Service จัสเทล",
+    "name_en": "JasTel Service Related Laws",
+    "total_laws": 45,
+    "compliant_count": 59,
+    "non_compliant_count": 0,
+    "created_at": "2026-06-03T04:01:14.971486+00:00"
+  }
+]

@@ -18,7 +18,7 @@ export const AUTH_MODE = import.meta.env.VITE_AUTH_MODE || 'demo'   // 'demo' | 
 // true = เข้าแอปได้เลยไม่ต้องล็อกอิน (เข้าเป็นผู้ใช้ guest สิทธิ์ admin เพื่อทดสอบได้ครบ)
 // ตั้งเป็น false เพื่อเปิดหน้าล็อกอิน/Landing กลับมาเหมือนเดิม
 // (override ได้ด้วย env: VITE_SKIP_LOGIN=0)
-export const SKIP_LOGIN = import.meta.env.VITE_SKIP_LOGIN === '1'
+export const SKIP_LOGIN = import.meta.env.VITE_SKIP_LOGIN !== '0'
 export const GUEST_SESSION = { name: 'ผู้ทดลองใช้', role: 'admin', username: 'guest', mode: 'guest', ts: 0 }
 
 // Role assigned to anyone who signs in via Microsoft (real org staff = จป).

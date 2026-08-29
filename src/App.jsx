@@ -528,6 +528,11 @@ export default function App(){
           </div>
         ))}
 
+        <a className="nav-item" href={import.meta.env.BASE_URL+'manual.pdf'} target="_blank" rel="noopener noreferrer" title="คู่มือการใช้งาน">
+          <span className="nav-ic"><I n="info"/></span>
+          <span className="label">คู่มือการใช้งาน</span>
+        </a>
+
         {/* P19 · ตั้งค่า ย้ายจากเมนูหลักมาเป็นปุ่มเฟืองมุมล่างซ้าย (เฉพาะ admin เหมือนเดิม) */}
         <div className="side-foot">
           <div className="av">{(session?.name||'ผู้').trim().charAt(0)}</div>

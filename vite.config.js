@@ -26,4 +26,4 @@ function clawdUsagePlugin(){
   }
 }
 
-export default defineConfig({ plugins: [react(), clawdUsagePlugin()] })
+export default defineConfig({ base: './', plugins: [react(), clawdUsagePlugin()] })

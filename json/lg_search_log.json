@@ -1,0 +1,34 @@
+[
+  {
+    "id": "834c3194-f4de-428d-833c-7e741edae48a",
+    "searched_by": "จป.วิชาชีพ",
+    "searched_at": "2026-07-17T08:04:11.218408+00:00",
+    "sources": [
+      "ratchakitcha",
+      "shawpat"
+    ],
+    "results_count": 0,
+    "result_summary": {
+      "laws": [],
+      "period": "7/2026",
+      "web_searches": 3
+    },
+    "no_new_laws": true
+  },
+  {
+    "id": "0b35b120-6784-4866-b72b-125108a722ea",
+    "searched_by": "จป.วิชาชีพ",
+    "searched_at": "2026-07-17T08:05:04.40498+00:00",
+    "sources": [
+      "ratchakitcha",
+      "shawpat"
+    ],
+    "results_count": 0,
+    "result_summary": {
+      "laws": [],
+      "period": "7/2026",
+      "web_searches": 4
+    },
+    "no_new_laws": true
+  }
+]

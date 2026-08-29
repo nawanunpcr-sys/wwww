@@ -26,21 +26,31 @@ export function usePageFilters(page, defaults) {
   return [state, set, reset, isActive]
 }
 
-// ── P18 · แยกแยะข้อปฏิบัติ 3 แบบ ─────────────────────────────────────────────
+// ── P18/P21 · แยกแยะข้อปฏิบัติ 5 แบบ ─────────────────────────────────────────
 //  met                          = ประเมินแล้ว: สอดคล้อง
 //  unmet (NC จริง)              = ประเมินแล้ว: ไม่สอดคล้อง
 //  waiting (รอผู้เกี่ยวข้องประเมิน) = ยังไม่ตัดสิน — เก็บเป็น status 'unmet' + evaluated_at NULL + note marker
 //    (ใช้ note marker เป็นตัวแยก เพื่อไม่ให้ข้อมูลเดิม (unmet ที่ไม่มี evaluated_at) ถูกนับเป็น waiting)
+//  acknowledged (Ack เพื่อทราบ) / not_applicable (- ไม่เกี่ยวข้อง)
+//    = สถานะเพิ่มจาก migration 044 (P21 · 4 สถานะ) — ไม่ใช่ NC จริง ห้ามนับรวมใน unmet
 export const isWaitingReq = r => r?.status === 'unmet' && !r?.evaluated_at && /รอผู้เกี่ยวข้องประเมิน/.test(r?.note || '')
-export const reqKind = r => r?.status === 'met' ? 'met' : (isWaitingReq(r) ? 'waiting' : 'unmet')
-// รวมสถิติข้อปฏิบัติของกฎหมายหลายฉบับ — % นับเฉพาะข้อที่ "ประเมินแล้ว" (met + unmet) ไม่รวม waiting
+export const reqKind = r => r?.status === 'met' ? 'met'
+  : r?.status === 'acknowledged' ? 'acknowledged'
+  : r?.status === 'not_applicable' ? 'not_applicable'
+  : (isWaitingReq(r) ? 'waiting' : 'unmet')
+// รวมสถิติข้อปฏิบัติของกฎหมายหลายฉบับ — % นับเฉพาะข้อที่ "ประเมินแล้ว" (met + unmet) ไม่รวม waiting/acknowledged/not_applicable
 export function sumReqStats(laws) {
-  let met = 0, unmet = 0, waiting = 0
+  let met = 0, unmet = 0, waiting = 0, acknowledged = 0, na = 0
   for (const l of (laws || [])) for (const r of (l.reqs || [])) {
-    const k = reqKind(r); if (k === 'met') met++; else if (k === 'waiting') waiting++; else unmet++
+    const k = reqKind(r)
+    if (k === 'met') met++
+    else if (k === 'waiting') waiting++
+    else if (k === 'acknowledged') acknowledged++
+    else if (k === 'not_applicable') na++
+    else unmet++
   }
   const assessed = met + unmet
-  return { total: met + unmet + waiting, met, unmet, waiting, assessed, pct: assessed ? Math.round(met / assessed * 100) : null }
+  return { total: met + unmet + waiting + acknowledged + na, met, unmet, waiting, acknowledged, na, assessed, pct: assessed ? Math.round(met / assessed * 100) : null }
 }
 export const reqStats = law => sumReqStats([law])
 // ค่าใช้จัดเรียง: ไม่มีข้อ=100, ประเมินแล้ว=pct, มีข้อแต่ยังไม่ประเมินเลย=-1 (จมล่างสุด)

@@ -305,7 +305,7 @@ export default function LawDrawer({ law, catMap, settings, onClose, onToggle, on
                 return (
                 <div className={'req '+(reqKind(r)==='waiting'?'waiting':r.status)} key={r.id}>
                   <button className="ck" onClick={()=>onToggle(law,r)} disabled={!can('edit')||isEditing} title={can('edit')?(reqEvalTitle(r)+' · คลิกเพื่อสลับสถานะ'):NO_PERM}>
-                    {reqKind(r)==='met' ? 'C' : reqKind(r)==='unmet' ? 'NC' : '⏳'}
+                    {{met:'C', unmet:'NC', acknowledged:'Ack', not_applicable:'-'}[reqKind(r)] ?? '⏳'}
                   </button>
                   <div style={{flex:1}}>
                     {isEditing ? (
